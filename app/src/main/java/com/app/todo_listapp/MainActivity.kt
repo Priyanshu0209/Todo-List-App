@@ -7,6 +7,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.navigation.compose.rememberNavController
+import com.app.todo_listapp.presentation.nvgraph.NavGraph
+import com.app.todo_listapp.presentation.nvgraph.Route
 import com.app.todo_listapp.ui.theme.TodoListAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,6 +27,11 @@ class MainActivity : ComponentActivity(){
         super.onCreate(savedInstanceState)
         setContent {
             TodoListAppTheme {
+                val navController = rememberNavController()
+                NavGraph(
+                    navController = navController,
+                    startDestination = Route.NotesScreen.route
+                )
 
             }
         }
