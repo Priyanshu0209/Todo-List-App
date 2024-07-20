@@ -1,17 +1,23 @@
 package com.app.todo_listapp.presentation
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -60,7 +66,10 @@ fun NotesScreen() {
                     ) {
                         IconButton(
                             modifier = Modifier
-                                .background(color = IconButtonColor, shape = RoundedCornerShape(10.dp)),
+                                .background(
+                                    color = IconButtonColor,
+                                    shape = RoundedCornerShape(10.dp)
+                                ),
                             onClick = {
                                 //Todo
                             },
@@ -75,8 +84,10 @@ fun NotesScreen() {
                         Spacer(modifier = Modifier.width(10.dp))
                         IconButton(
                             modifier = Modifier
-                                .background(color = IconButtonColor, shape = RoundedCornerShape(10.dp))
-                            ,
+                                .background(
+                                    color = IconButtonColor,
+                                    shape = RoundedCornerShape(10.dp)
+                                ),
                             onClick = {
                                 //Todo
                             },
@@ -95,7 +106,21 @@ fun NotesScreen() {
             )
         },
         floatingActionButton = {
-
+            FloatingActionButton(
+                modifier = Modifier
+                    .size(70.dp),
+                onClick = {
+                    //Todo
+                },
+                shape = CircleShape,
+                containerColor = Color.Black
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.add),
+                    contentDescription = null,
+                    tint = Color.White
+                )
+            }
         },
         floatingActionButtonPosition = FabPosition.End,
         containerColor = SystemBackgroundColor,
@@ -105,9 +130,10 @@ fun NotesScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues),
-
-            ) {
-
+        ) {
+            item {
+               
+            }
         }
 
     }
