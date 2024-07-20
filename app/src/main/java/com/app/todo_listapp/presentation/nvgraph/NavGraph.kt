@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.app.todo_listapp.presentation.AddNoteScreen
-import com.app.todo_listapp.presentation.NotesScreen
+import com.app.todo_listapp.presentation.notescreen.NotesScreen
 
 
 @Composable
@@ -19,7 +19,6 @@ fun NavGraph(
         startDestination = startDestination
     ) {
 
-
         composable(route = Route.NotesScreen.route) {
             NotesScreen(
                 onClick = {
@@ -29,7 +28,11 @@ fun NavGraph(
         }
 
         composable(route = Route.AddNotesScreen.route) {
-            AddNoteScreen()
+            AddNoteScreen(
+                onBackClick = {
+                    navController.navigateUp()
+                }
+            )
         }
 
 
