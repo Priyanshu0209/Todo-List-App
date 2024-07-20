@@ -42,7 +42,9 @@ import com.app.todo_listapp.ui.theme.nunito_semibold
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NotesScreen() {
+fun NotesScreen(
+    onClick : () -> Unit
+) {
 
     Scaffold(
         modifier = Modifier
@@ -111,9 +113,7 @@ fun NotesScreen() {
             FloatingActionButton(
                 modifier = Modifier
                     .size(70.dp),
-                onClick = {
-                    //Todo
-                },
+                onClick = onClick,
                 shape = CircleShape,
                 containerColor = Color.Black
             ) {
