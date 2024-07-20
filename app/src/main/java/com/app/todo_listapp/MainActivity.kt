@@ -8,8 +8,10 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.app.todo_listapp.ui.theme.TodoListAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
