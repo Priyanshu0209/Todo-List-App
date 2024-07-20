@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import com.app.todo_listapp.R
 import com.app.todo_listapp.ui.theme.IconButtonColor
 import com.app.todo_listapp.ui.theme.SystemBackgroundColor
+import com.app.todo_listapp.ui.theme.nunito_light
 import com.app.todo_listapp.ui.theme.nunito_semibold
 
 
@@ -125,6 +127,29 @@ fun NotesScreen() {
         floatingActionButtonPosition = FabPosition.End,
         containerColor = SystemBackgroundColor,
     ) { paddingValues ->
+        if (true) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ){
+                    Image(
+                        painter = painterResource(id = R.drawable.empty),
+                        contentDescription = null
+                    )
+                    Text(
+                        text = "Create your first Task!",
+                        color = Color.White,
+                        fontFamily = nunito_light,
+                        fontSize = 18.sp
+                    )
+                }
+            }
+        }
 
         LazyColumn(
             modifier = Modifier

@@ -11,6 +11,7 @@ import com.app.todo_listapp.R
 
 val nunito_regular = FontFamily(Font(R.font.nunito_regular))
 val nunito_semibold = FontFamily(Font(R.font.nunito_semibold))
+val nunito_light = FontFamily(Font(R.font.nunito_light))
 
 // Set of Material typography styles to start with
 val Typography = Typography(
