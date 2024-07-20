@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -33,6 +35,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.todo_listapp.R
+import com.app.todo_listapp.core.getColor
 import com.app.todo_listapp.ui.theme.IconButtonColor
 import com.app.todo_listapp.ui.theme.SystemBackgroundColor
 import com.app.todo_listapp.ui.theme.nunito_light
@@ -42,12 +45,11 @@ import com.app.todo_listapp.ui.theme.nunito_semibold
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotesScreen(
-    onClick : () -> Unit
+    onClick: () -> Unit, state: NoteState
 ) {
 
     Scaffold(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
                 title = {
@@ -60,18 +62,15 @@ fun NotesScreen(
                 },
 
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = SystemBackgroundColor),
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 actions = {
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         IconButton(
-                            modifier = Modifier
-                                .background(
-                                    color = IconButtonColor,
-                                    shape = RoundedCornerShape(10.dp)
+                            modifier = Modifier.background(
+                                    color = IconButtonColor, shape = RoundedCornerShape(10.dp)
                                 ),
                             onClick = {
                                 //Todo
@@ -86,10 +85,8 @@ fun NotesScreen(
                         }
                         Spacer(modifier = Modifier.width(10.dp))
                         IconButton(
-                            modifier = Modifier
-                                .background(
-                                    color = IconButtonColor,
-                                    shape = RoundedCornerShape(10.dp)
+                            modifier = Modifier.background(
+                                    color = IconButtonColor, shape = RoundedCornerShape(10.dp)
                                 ),
                             onClick = {
                                 //Todo
@@ -105,13 +102,11 @@ fun NotesScreen(
                         Spacer(modifier = Modifier.width(10.dp))
                     }
                 },
-                scrollBehavior = null
             )
         },
         floatingActionButton = {
             FloatingActionButton(
-                modifier = Modifier
-                    .size(70.dp),
+                modifier = Modifier.size(70.dp),
                 onClick = onClick,
                 shape = CircleShape,
                 containerColor = Color.Black
@@ -126,19 +121,31 @@ fun NotesScreen(
         floatingActionButtonPosition = FabPosition.End,
         containerColor = SystemBackgroundColor,
     ) { paddingValues ->
-        if (true) {
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
+        ) {
+            item {
+                Spacer(modifier = Modifier.height(7.dp))
+            }
+            items(state.notes) { note ->
+                Note(
+                    title = note.title, color = Modifier.getColor(note.colorId)
+                )
+            }
+        }
+        if (state.notes.isNullOrEmpty()) {
             Box(
-                modifier = Modifier
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
+                modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
             ) {
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
-                ){
+                ) {
                     Image(
-                        painter = painterResource(id = R.drawable.empty),
-                        contentDescription = null
+                        painter = painterResource(id = R.drawable.empty), contentDescription = null
                     )
                     Text(
                         text = "Create your first Task!",
@@ -148,16 +155,8 @@ fun NotesScreen(
                     )
                 }
             }
-        }
+        }else{
 
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-        ) {
-            item {
-               
-            }
         }
 
     }

@@ -33,6 +33,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.todo_listapp.R
+import com.app.todo_listapp.presentation.notescreen.NoteEvent
+import com.app.todo_listapp.presentation.notescreen.NoteState
 import com.app.todo_listapp.ui.theme.IconButtonColor
 import com.app.todo_listapp.ui.theme.SystemBackgroundColor
 import com.app.todo_listapp.ui.theme.nunito_regular
@@ -42,7 +44,9 @@ import com.app.todo_listapp.ui.theme.textHintTitleColor
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddNoteScreen(
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onSaveClick: (NoteEvent) -> Unit,
+    state : NoteState
 ) {
 
     Scaffold(
@@ -97,7 +101,7 @@ fun AddNoteScreen(
                                     shape = RoundedCornerShape(10.dp)
                                 ),
                             onClick = {
-                                //Todo
+                                onSaveClick(NoteEvent.SaveNote)
                             },
                             colors = IconButtonDefaults.iconButtonColors(containerColor = IconButtonColor)
                         ) {
@@ -121,15 +125,12 @@ fun AddNoteScreen(
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-            //TODO To be removed
-            var title by remember { mutableStateOf("") }
-            var description by remember { mutableStateOf("") }
             TextField(
                 modifier = Modifier
                     .fillMaxWidth(),
-                value = title,
+                value = state.title.value,
                 onValueChange = {
-                    title = it
+                    state.title.value = it
                 },
                 textStyle = TextStyle(
                     fontFamily = nunito_regular,
@@ -155,9 +156,9 @@ fun AddNoteScreen(
             TextField(
                 modifier = Modifier
                     .fillMaxWidth(),
-                value = description,
+                value = state.description.value,
                 onValueChange = {
-                    description = it
+                    state.description.value = it
                 },
                 textStyle = TextStyle(
                     fontFamily = nunito_regular,
