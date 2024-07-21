@@ -35,6 +35,7 @@ class MainActivity : ComponentActivity() {
                     mainViewModel = mainViewModel,
                     startDestination = Route.NotesScreen.route
                 )
+
             }
         }
     }
