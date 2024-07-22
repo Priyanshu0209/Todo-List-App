@@ -132,7 +132,7 @@ fun NotesScreen(
             }
             items(state.notes) { note ->
                 Note(
-                    title = note.title, color = Modifier.getColor(note.colorId)
+                    title = note.title, color = Color.White
                 )
             }
         }

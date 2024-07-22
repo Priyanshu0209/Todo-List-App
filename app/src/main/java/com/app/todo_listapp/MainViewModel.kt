@@ -42,6 +42,7 @@ class MainViewModel @Inject constructor(
                     description = state.value.description.value,
                     colorId = (1..6).random()
                 )
+
                 viewModelScope.launch {
                     notesDatabase.notesDao.addNote(note)
                 }
